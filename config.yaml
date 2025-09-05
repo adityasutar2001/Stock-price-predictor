@@ -1,0 +1,37 @@
+data:
+  ticker: "AAPL"               # change to your stock symbol
+  start: "2015-01-01"
+  end: "2025-08-01"
+  interval: "1d"
+
+paths:
+  raw: "data/raw"
+  processed: "data/processed"
+
+features:
+  lookback_days: 14
+  target: "Close"              # we will predict next-day Close
+  technicals:
+    - "sma_5"
+    - "sma_10"
+    - "ema_12"
+    - "ema_26"
+    - "rsi_14"
+    - "macd"
+    - "macd_signal"
+    - "bb_high"
+    - "bb_low"
+    - "returns_1d"
+    - "volatility_14d"
+
+train:
+  test_size: 0.2
+  random_state: 42
+  scale_features: true
+
+models:
+  linear_regression: {}
+  random_forest:
+    n_estimators: 400
+    max_depth: 8
+    random_state: 42
